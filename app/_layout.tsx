@@ -1,29 +1,38 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+// app/_layout.js or app/_layout.tsx (older versions may call it RootLayout.js)
+import {
+  Fredoka_400Regular,
+  Fredoka_600SemiBold,
+  Fredoka_700Bold,
+  useFonts,
+} from "@expo-google-fonts/fredoka";
+import { Stack } from "expo-router";
+import * as ExpoSplashScreen from "expo-splash-screen";
+import { useCallback } from "react";
+import { View } from "react-native";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import "./global.css"; // Tailwind/nativewind setup assumed
+
+// Prevent splash from auto-hiding
+ExpoSplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  const [fontsLoaded] = useFonts({
+    Fredoka_400Regular,
+    Fredoka_600SemiBold,
+    Fredoka_700Bold,
   });
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await ExpoSplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return null;
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
+      <Stack screenOptions={{ headerShown: false }} />
+    </View>
   );
 }
