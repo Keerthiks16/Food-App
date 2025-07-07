@@ -1,7 +1,9 @@
 import CartButton from "@/components/CartButton";
 import { images, offers } from "@/constants";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import useAuthStore from "@/store/auth.store";
+import * as Sentry from "@sentry/react-native";
 import {
+  Button,
   FlatList,
   Image,
   Pressable,
@@ -12,15 +14,17 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
+  const {user}=useAuthStore();
+  console.log("User: ",JSON.stringify(user,null,2))
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-[#FFF8F0]">
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offers}
         ListHeaderComponent={() => (
           <View className="flex-row w-full my-5 px-5 justify-between">
             <View className="flex-start">
-              <Text className="font-fredoka">Welcome User</Text>
+              <Text className="font-fredoka">Welcome {user?.name}</Text>
               <TouchableOpacity className="flex-center flex-row gap-x-1 mt-0.5">
                 <Text className="font-fredokasemi">Mumbai</Text>
                 <Image
@@ -30,9 +34,10 @@ export default function Index() {
                 />
               </TouchableOpacity>
             </View>
-          <CartButton cartCount={3}/>
-         </View>
+            <CartButton cartCount={3} />
+          </View>
         )}
+      
         renderItem={({ item, index }) => {
           const isEven = index % 2 === 0;
           return (
@@ -55,14 +60,13 @@ export default function Index() {
               </View>
               <Image
                 source={item.image}
-                className={`size-56 ${isEven ? "ml-8" : "mr-2"}`}
+                className={`size-56 ${isEven ? "ml-4 bottom-4" : "mr-2"}`}
                 resizeMode="contain"
               />
             </Pressable>
           );
         }}
       />
-      <Text className="font-fredoka mx-auto">Index</Text>
     </SafeAreaView>
   );
 }

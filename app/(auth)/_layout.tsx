@@ -1,13 +1,25 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { Slot } from 'expo-router'
+// app/(auth)/_layout.tsx
+import useAuthStore from "@/store/auth.store";
+import { Redirect, Slot } from "expo-router";
+import React from "react";
+import { KeyboardAvoidingView, Platform, ScrollView, StatusBar } from "react-native";
 
-export default function _layout() {
+export default function AuthLayout() {
+  const {isAuthenticated}= useAuthStore();
+  if(isAuthenticated) return <Redirect href={"/"}/>
   return (
-    <SafeAreaView>
-      <Text>Auth Layout</Text>
-      <Slot/>
-    </SafeAreaView>
-  )
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      className="flex-1"
+    >
+      <ScrollView
+        className="bg-[#FFF8F0] flex-1"
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{ flexGrow: 1 }}
+      >
+        
+        <Slot />
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
 }
