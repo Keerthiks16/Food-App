@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
 export default function CartButton({ cartCount = 0 }) {
@@ -6,6 +7,7 @@ export default function CartButton({ cartCount = 0 }) {
     <TouchableOpacity
       activeOpacity={0.8}
       className="relative p-3 bg-blue-950 rounded-full shadow-md shadow-blue-900"
+      onPress={() => router.push("/cart")}
     >
       <Ionicons name="bag-outline" size={24} color="white" />
 

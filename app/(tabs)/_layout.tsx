@@ -1,11 +1,10 @@
 import useAuthStore from "@/store/auth.store";
 import { TabBarIconProps } from "@/type";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { Redirect, Tabs } from "expo-router";
-import Entypo from '@expo/vector-icons/Entypo';
 import React from "react";
 import { Image, Text, View } from "react-native";
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
   <View>
@@ -63,7 +62,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="search/page"
         options={{
           title: "Search",
           tabBarIcon: ({ focused }) => (

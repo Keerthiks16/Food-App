@@ -108,6 +108,45 @@ export const getMenu = async ({ category, query }: GetMenuParams) => {
   }
 };
 
+export const getMenuItem = async (id: string) => {
+  try {
+    const menuItem = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.menuCollectionId,
+      id
+    );
+
+    return menuItem;
+  } catch (error) {
+    console.log("Error in getMenuItem: ", error);
+  }
+};
+
+export const getItemByName = async (name: string) => {
+  try {
+    const item = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.menuCollectionId,
+      name
+    );
+    return item;
+  } catch (error) {
+    console.log("Error in getMenuItem: ", error);
+  }
+};
+
+export const getCustomizations = async () => {
+  try {
+    const customs = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.customizationsCollectionId
+    );
+    return customs;
+  } catch (error) {
+    console.log("Error in getCustomizations: ", error);
+  }
+};
+
 export const getCategories = async () => {
   try {
     const categories = await databases.listDocuments(

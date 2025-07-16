@@ -41,6 +41,16 @@ import salad from "@/assets/images/salad.png";
 import success from "@/assets/images/success.png";
 import tomatoes from "@/assets/images/tomatoes.png";
 
+import bash2 from "@/assets/images/Cheese_Burst_Fries.png";
+import summer1 from "@/assets/images/Double_Cheese_Burger.png";
+import summer2 from "@/assets/images/Fries & Coke Combo.png";
+import pizza3 from "@/assets/images/Garlic_Breadsticks.png";
+import burrito1 from "@/assets/images/Grilled_Chicken_Burrito.png";
+import pizza1 from "@/assets/images/Margherita_Pizza.png";
+import burrito2 from "@/assets/images/Mexican_Rice_Bowl.png";
+import bash1 from "@/assets/images/Spicy_Chicken_Burger.png";
+import pizza2 from "@/assets/images/Veg_Supreme_Pizza.png";
+
 export const CATEGORIES = [
   {
     id: "1",
@@ -70,24 +80,103 @@ export const offers = [
     title: "SUMMER COMBO",
     image: burgerOne,
     color: "#D33B0D",
+    description:
+      "Chill out this summer with our sizzling combo of juicy burgers and crispy fries. Perfect for a quick bite or a full meal!",
+    packages: [
+      {
+        item: "Double Cheese Burger",
+        quantity: 2,
+        customs: ["Extra cheese", "No pickles"],
+        total: 300,
+        image: summer1,
+      },
+      {
+        item: "Fries & Coke Combo",
+        quantity: 1,
+        customs: ["Large fries"],
+        total: 150,
+        image: summer2,
+      },
+    ],
   },
   {
     id: 2,
     title: "BURGER BASH",
     image: burgerTwo,
     color: "#DF5A0C",
+    description:
+      "Celebrate flavor with our Burger Bash deal! Loaded with spicy, cheesy, and crispy goodness for burger lovers.",
+    packages: [
+      {
+        item: "Spicy Chicken Burger",
+        quantity: 2,
+        customs: ["No mayo", "Add jalapenos"],
+        total: 330,
+        image: bash1,
+      },
+      {
+        item: "Cheese Burst Fries",
+        quantity: 1,
+        customs: ["Cheddar cheese topping"],
+        total: 180,
+        image: bash2,
+      },
+    ],
   },
   {
     id: 3,
     title: "PIZZA PARTY",
     image: pizzaOne,
     color: "#084137",
+    description:
+      "Host the ultimate pizza night with our deliciously crafted pizzas made with fresh dough and exotic toppings.",
+    packages: [
+      {
+        item: "Margherita Pizza",
+        quantity: 1,
+        customs: ["Thin crust", "Extra basil"],
+        total: 250,
+        image: pizza1,
+      },
+      {
+        item: "Veg Supreme Pizza",
+        quantity: 1,
+        customs: ["Stuffed crust", "No olives"],
+        total: 350,
+        image: pizza2,
+      },
+      {
+        item: "Garlic Breadsticks",
+        quantity: 1,
+        customs: ["Cheddar cheese topping"],
+        total: 100,
+        image: pizza3,
+      },
+    ],
   },
   {
     id: 4,
     title: "BURRITO DELIGHT",
     image: buritto,
     color: "#EB920C",
+    description:
+      "Wrap your taste buds in a fiesta of flavors with our Burrito Delight—fresh, filling, and fantastic!",
+    packages: [
+      {
+        item: "Grilled Chicken Burrito",
+        quantity: 2,
+        customs: ["Add sour cream", "No beans"],
+        total: 400,
+        image: burrito1,
+      },
+      {
+        item: "Mexican Rice Bowl",
+        quantity: 1,
+        customs: ["Extra guacamole"],
+        total: 200,
+        image: burrito2,
+      },
+    ],
   },
 ];
 
